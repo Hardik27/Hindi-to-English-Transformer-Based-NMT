@@ -1,0 +1,65 @@
+#data yml for vocab that is present in train and test but not present in 50k vocab
+
+model_dir: /content/gdrive/My Drive/Hindi-Eng/Hindi_Eng_BT_BPE
+ 
+data:
+  train_features_file: /content/gdrive/My Drive/Hindi-Eng/Hindi_Eng_BT_BPE/src-train-bpe.txt
+  train_labels_file: /content/gdrive/My Drive/Hindi-Eng/Hindi_Eng_BT_BPE/tgt-train-bpe.txt
+  eval_features_file: /content/gdrive/My Drive/Hindi-Eng/Hindi_Eng_BT_BPE/src-test-bpe.txt
+  eval_labels_file: /content/gdrive/My Drive/Hindi-Eng/Hindi_Eng_BT_BPE/tgt-test-bpe.txt
+  source_vocabulary: /content/gdrive/My Drive/Hindi-Eng/Hindi_Eng_BT_BPE/src-vocab-bpe.txt
+  target_vocabulary: /content/gdrive/My Drive/Hindi-Eng/Hindi_Eng_BT_BPE/tgt-vocab-bpe.txt
+  #vocabulary: /content/gdrive/My Drive/Eng-Hindi/Hardik_Model/vocab.txt        Use it for language Models like GPT2Small
+
+eval:
+  
+  external_evaluators: BLEU
+  steps: 1000
+
+#infer:
+#  batch_size: 32
+#  length_bucket_width: 5
+
+
+#params:
+#  replace_unknown_target: true
+
+#params:
+#    optimizer: Adam
+  # (optional) Additional optimizer parameters as defined in their documentation.
+  # If weight_decay is set, the optimizer will be extended with decoupled weight decay.
+#    optimizer_params:
+#        beta_1: 0.8
+#        beta_2: 0.998
+#    learning_rate: 2.0
+
+  # (optional) If set, overrides all dropout values configured in the model definition.
+#    dropout: 0.3
+#    decay_type: NoamDecay
+  # (optional unless decay_type is set) Decay parameters.
+#    decay_params:
+#        model_dim: 512
+#        warmup_steps: 4000
+  # (optional) After how many steps to start the decay (default: 0).
+ #   start_decay_steps: 30000
+
+  
+  #  beam_width: 5
+    
+
+#score:
+#  batch_size: 64
+
+train:
+  average_last_checkpoints: 3
+  batch_size: 64
+  batch_type: examples
+  effective_batch_size: 384
+  keep_checkpoint_max: 3
+  length_bucket_width: 1
+  max_step: 100000
+  save_checkpoints_steps: 1000
+  maximum_features_length: 70
+  maximum_labels_length: 70
+  sample_buffer_size: -1
+  save_summary_steps: 100
